@@ -1,5 +1,10 @@
+import { ReactRouterProvider } from "./ReactRouterProvider";
 import { ReduxProvider } from "./ReduxProvider";
 
 export function Providers() {
-  return <ReduxProvider>test</ReduxProvider>;
+  return (
+    <ReduxProvider>
+      <ReactRouterProvider />
+    </ReduxProvider>
+  );
 }
