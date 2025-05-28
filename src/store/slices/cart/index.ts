@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
       state.selectedProducts.push(action.payload);
     },
   },
-  reducerPath: "card",
+  reducerPath: "cart",
 });
 
 export const { addToCart } = cartSlice.actions;
