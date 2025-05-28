@@ -7,17 +7,27 @@ import { Search } from "~/pages/main/components/search/Search";
 //------------------------------------------------------
 
 export function ProductColumn() {
-  const { productData, searchedData, isLoading, handlerSearch } =
-    useProductColumn();
+  const {
+    productData,
+    searchedData,
+    isLoading,
+    columnRef,
+    handlerSearch,
+    handlerScroll,
+  } = useProductColumn();
   return (
     <ColumnContainer>
       <Search handlerSearch={handlerSearch} />
-      <div className="flex flex-col gap-2 grow-1 overflow-auto">
+      <div
+        ref={columnRef}
+        className="flex flex-col gap-2 grow-1 overflow-auto"
+        onScroll={handlerScroll}
+      >
         {isLoading ? (
           <Loading />
         ) : (
           (searchedData?.length ? searchedData : productData)?.map((prod) => (
-            <ProductCard product={prod} />
+            <ProductCard key={prod.id} product={prod} />
           ))
         )}
       </div>
