@@ -1,25 +1,23 @@
 //@Components
+import { ColumnContainer } from "~/pages/main/components/ColumnContainer";
+import { ProductCard } from "~/pages/main/components/ProductCard";
 import { useProductColumn } from "~/pages/main/components/product-column/useProductColumn";
+import { Search } from "~/pages/main/components/search/Search";
 //------------------------------------------------------
 
 export function ProductColumn() {
-  const { productData, searchedData, isLoading, handleSearchTerm, searchTerm } =
+  const { productData, searchedData, isLoading, handlerSearch } =
     useProductColumn();
   return (
-    <div className="flex flex-col gap-3 h-full overflow-auto">
-      <input
-        type="text"
-        className="shrink-0"
-        onChange={(e) => handleSearchTerm(e.target.value)}
-        value={searchTerm}
-      />
-      <div className="flex flex-col grow-1 overflow-auto">
+    <ColumnContainer>
+      <Search handlerSearch={handlerSearch}/>
+      <div className="flex flex-col gap-2 grow-1 overflow-auto">
         {isLoading
           ? null
           : (searchedData?.length ? searchedData : productData)?.map((prod) => (
-              <div key={prod.id}>{prod.title}</div>
+              <ProductCard product={prod} />
             ))}
       </div>
-    </div>
+    </ColumnContainer>
   );
 }
