@@ -8,7 +8,7 @@ interface IColumnContainer {
 
 export function ColumnContainer({ children }: IColumnContainer) {
   return (
-    <div className="flex flex-col px-4 gap-3 h-full overflow-auto">
+    <div className="flex flex-col px-4 gap-3 w-full h-full overflow-auto">
       {children}
     </div>
   );
