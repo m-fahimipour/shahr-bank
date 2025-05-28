@@ -1,8 +1,14 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { IProduct } from "../../../types/common";
+//@Third-Party
+import { createSlice } from "@reduxjs/toolkit";
+//------------------------------------------------------
+
+//@Types
+import type { ICartItem, IProduct } from "~/types/common";
+import type { PayloadAction } from "@reduxjs/toolkit";
+//------------------------------------------------------
 
 interface ICartSliceInitialState {
-  selectedProducts: IProduct[];
+  selectedProducts: ICartItem[];
 }
 
 const initialState: ICartSliceInitialState = {
@@ -14,10 +20,44 @@ export const cartSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToCart(state, action: PayloadAction<IProduct>) {
-      state.selectedProducts.push(action.payload);
+      const IndexItem = state.selectedProducts.findIndex(
+        (item) => item.product.id == action.payload.id
+      );
+
+      if (IndexItem !== -1) {
+        state.selectedProducts[IndexItem].count += 1;
+      } else {
+        state.selectedProducts.push({
+          product: action.payload,
+          count: 1,
+        });
+      }
+    },
+
+    deleteFromCart(state, action: PayloadAction<IProduct>) {
+      state.selectedProducts = state.selectedProducts.filter(
+        (item) => item.product.id !== action.payload.id
+      );
+    },
+
+    increase(state, action: PayloadAction<IProduct>) {
+      const IndexItem = state.selectedProducts.findIndex(
+        (item) => item.product.id == action.payload.id
+      );
+      state.selectedProducts[IndexItem].count += 1;
+    },
+
+    decrease(state, action: PayloadAction<IProduct>) {
+      const IndexItem = state.selectedProducts.findIndex(
+        (item) => item.product.id == action.payload.id
+      );
+      if (state.selectedProducts[IndexItem].count > 1) {
+        state.selectedProducts[IndexItem].count -= 1;
+      }
     },
   },
   reducerPath: "cart",
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, deleteFromCart, increase, decrease } =
+  cartSlice.actions;

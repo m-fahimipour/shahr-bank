@@ -1,4 +1,5 @@
 //@Components
+import { CartColumn } from "~/pages/main/components/cart-column/CartColumn";
 import { ProductColumn } from "~/pages/main/components/product-column/ProductColumn";
 //------------------------------------------------------
 
@@ -12,7 +13,7 @@ export default function MainPage() {
         <ProductColumn />
       </div>
       <div className="flex items-center w-full sm:w-1/2 md:w-1/3 h-full overflow-auto">
-        test
+        <CartColumn />
       </div>
     </div>
   );

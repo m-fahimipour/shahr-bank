@@ -35,3 +35,8 @@ export interface IUserAddress {
   number: string;
   zipcode: string;
 }
+
+export interface ICartItem {
+  count: number;
+  product: IProduct;
+}
