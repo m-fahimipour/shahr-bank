@@ -48,6 +48,7 @@ export function CartCard({ cartItem }: ICartCard) {
 
       {/* action section */}
       <div className="flex gap-5 items-center justify-between">
+        {/* remover button */}
         <Button
           className="bg-red-500 hover:bg-red-800 hover:cursor-pointer"
           variant={"default"}
@@ -64,6 +65,7 @@ export function CartCard({ cartItem }: ICartCard) {
         </Button>
 
         <div className="flex justify-between items-center gap-2">
+          {/* decrease button */}
           <Button
             className="hover:cursor-pointer"
             onClick={() => {
@@ -79,7 +81,11 @@ export function CartCard({ cartItem }: ICartCard) {
           >
             {"-"}
           </Button>
+
+          {/* count */}
           <span className="text-2xl">{cartItem.count}</span>
+
+          {/* increase button */}
           <Button
             className="hover:cursor-pointer"
             onClick={() => {
