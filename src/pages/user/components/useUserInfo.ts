@@ -46,5 +46,6 @@ export function useUserInfo() {
 
   return {
     userInfo,
+    isLoading,
   };
 }

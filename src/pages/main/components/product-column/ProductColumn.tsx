@@ -1,4 +1,5 @@
 //@Components
+import { Loading } from "~/components/ui/Loading";
 import { ColumnContainer } from "~/pages/main/components/ColumnContainer";
 import { ProductCard } from "~/pages/main/components/product-column/ProductCard";
 import { useProductColumn } from "~/pages/main/components/product-column/useProductColumn";
@@ -12,11 +13,13 @@ export function ProductColumn() {
     <ColumnContainer>
       <Search handlerSearch={handlerSearch} />
       <div className="flex flex-col gap-2 grow-1 overflow-auto">
-        {isLoading
-          ? null
-          : (searchedData?.length ? searchedData : productData)?.map((prod) => (
-              <ProductCard product={prod} />
-            ))}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          (searchedData?.length ? searchedData : productData)?.map((prod) => (
+            <ProductCard product={prod} />
+          ))
+        )}
       </div>
     </ColumnContainer>
   );
