@@ -27,7 +27,7 @@ export const cartSlice = createSlice({
       if (IndexItem !== -1) {
         state.selectedProducts[IndexItem].count += 1;
       } else {
-        state.selectedProducts.push({
+        state.selectedProducts.unshift({
           product: action.payload,
           count: 1,
         });
