@@ -1,4 +1,6 @@
-import { useProductColumn } from "./useProductColumn";
+//@Components
+import { useProductColumn } from "~/pages/main/components/product-column/useProductColumn";
+//------------------------------------------------------
 
 export function ProductColumn() {
   const { productData, searchedData, isLoading, handleSearchTerm, searchTerm } =

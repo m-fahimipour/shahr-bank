@@ -1,5 +1,7 @@
-import { ReactRouterProvider } from "./ReactRouterProvider";
-import { ReduxProvider } from "./ReduxProvider";
+//@Providers
+import { ReactRouterProvider } from "~/providers/ReactRouterProvider";
+import { ReduxProvider } from "~/providers/ReduxProvider";
+//------------------------------------------------------
 
 export function Providers() {
   return (

@@ -1,4 +1,6 @@
-import { ProductColumn } from "./components/product-column/ProductColumn";
+//@Components
+import { ProductColumn } from "~/pages/main/components/product-column/ProductColumn";
+//------------------------------------------------------
 
 export default function MainPage() {
   return (

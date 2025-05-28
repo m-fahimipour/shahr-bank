@@ -1,5 +1,10 @@
+//@Third-Party
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { IProduct, IUser } from "../types/common";
+//------------------------------------------------------
+
+//@Types
+import type { IProduct, IUser } from "~/types/common";
+//------------------------------------------------------
 
 export const dataApi = createApi({
   reducerPath: "dataApi",

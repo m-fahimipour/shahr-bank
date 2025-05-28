@@ -1,6 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import { useGetProductsQuery } from "../../../../services";
-import type { IProduct } from "../../../../types/common";
+//@React
+import { useEffect, useState } from "react";
+//------------------------------------------------------
+
+//@Services
+import { useGetProductsQuery } from "~/services";
+//------------------------------------------------------
+
+//@Types
+import type { IProduct } from "~/types/common";
+//------------------------------------------------------
 
 export function useProductColumn() {
   const { data: productData, isLoading } = useGetProductsQuery(undefined);

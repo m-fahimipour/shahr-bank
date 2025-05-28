@@ -1,6 +1,14 @@
+//@Third-Party
 import { Provider } from "react-redux";
-import { store } from "../store/store";
+//------------------------------------------------------
+
+//@Store
+import { store } from "~/store/store";
+//------------------------------------------------------
+
+//@Types
 import type { ReactNode } from "react";
+//------------------------------------------------------
 
 interface IReduxProvider {
   children: ReactNode;

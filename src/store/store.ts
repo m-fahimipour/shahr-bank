@@ -1,7 +1,15 @@
+//@Third-Party
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { cartSlice } from "./slices/cart";
-import { dataApi } from "../services";
+//------------------------------------------------------
+
+//@Services
+import { dataApi } from "~/services";
+//------------------------------------------------------
+
+//@Store
+import { cartSlice } from "~/store/slices/cart";
+//------------------------------------------------------
 
 export const store = configureStore({
   reducer: {
