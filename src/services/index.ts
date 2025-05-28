@@ -18,7 +18,11 @@ export const dataApi = createApi({
     getUsers: builder.query<IUser[], undefined>({
       query: () => "/users",
     }),
+    getUserInfo: builder.query<IUser, string>({
+      query: (id: string) => `/users/${id}`,
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetUsersQuery } = dataApi;
+export const { useGetProductsQuery, useGetUsersQuery, useGetUserInfoQuery } =
+  dataApi;
