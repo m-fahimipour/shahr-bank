@@ -1,9 +1,10 @@
 //@React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //------------------------------------------------------
 
 //@Third-Party
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router";
 //------------------------------------------------------
 
 //@Types
@@ -15,25 +16,27 @@ export function useCartColumn() {
   const cartItems = useSelector(
     (state: TRootState) => state.cart.selectedProducts
   );
-  const [searchedData, setSearchData] = useState<ICartItem[] | undefined>(
-    undefined
-  );
+  const [searchParams] = useSearchParams();
 
-  function handlerSearch(searchValue: string) {
-    if (searchValue) {
+  const [searchedData, setSearchData] = useState<ICartItem[] | undefined>([]);
+
+  useEffect(() => {
+    if (searchParams.has("cartSearch")) {
       setSearchData(
         cartItems?.filter((item) =>
-          item.product.title.toLowerCase().includes(searchValue.toLowerCase())
+          item.product.title
+            .toLowerCase()
+            .includes(searchParams.get("cartSearch")!.toLowerCase())
         )
       );
     } else {
       setSearchData([]);
     }
-  }
+  }, [searchParams.get("cartSearch"), cartItems.length]);
 
   return {
     cartItems,
     searchedData,
-    handlerSearch,
+    hasCartSearchParams: searchParams.has("cartSearch"),
   };
 }

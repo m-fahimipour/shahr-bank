@@ -8,12 +8,14 @@ import { Input } from "~/components/ui/input";
 
 //@Types
 export interface ISearch {
-  handlerSearch: (val: string) => void;
+  searchParam: "userSearch" | "productSearch" | "cartSearch";
 }
 //------------------------------------------------------
 
-export function Search({ handlerSearch }: ISearch) {
-  const { searchTerm, handleSearchTerm } = useSearch({ handlerSearch });
+export function Search({ searchParam }: ISearch) {
+  const { searchTerm, handleSearchTerm } = useSearch({
+    searchParam,
+  });
   return (
     <Input
       className="shrink-0"

@@ -7,15 +7,16 @@ import { useUserColumn } from "~/pages/main/components/user-column/useUserColumn
 //------------------------------------------------------
 
 export function UserColumn() {
-  const { userData, searchedData, isLoading, handlerSearch } = useUserColumn();
+  const { userData, searchedData, isLoading, hasProductSearchParams } =
+    useUserColumn();
   return (
     <ColumnContainer>
-      <Search handlerSearch={handlerSearch} />
+      <Search searchParam="userSearch" />
       <div className="flex flex-col gap-2 grow-1 overflow-auto">
         {isLoading ? (
           <Loading />
         ) : (
-          (searchedData?.length ? searchedData : userData)?.map((user) => (
+          (hasProductSearchParams ? searchedData : userData)?.map((user) => (
             <UserCard userInfo={user} />
           ))
         )}

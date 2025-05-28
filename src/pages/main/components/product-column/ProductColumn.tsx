@@ -12,12 +12,12 @@ export function ProductColumn() {
     searchedData,
     isLoading,
     columnRef,
-    handlerSearch,
+    hasProductSearchParams,
     handlerScroll,
   } = useProductColumn();
   return (
     <ColumnContainer>
-      <Search handlerSearch={handlerSearch} />
+      <Search searchParam="productSearch" />
       <div
         ref={columnRef}
         className="flex flex-col gap-2 grow-1 overflow-auto"
@@ -26,7 +26,7 @@ export function ProductColumn() {
         {isLoading ? (
           <Loading />
         ) : (
-          (searchedData?.length ? searchedData : productData)?.map((prod) => (
+          (hasProductSearchParams ? searchedData : productData)?.map((prod) => (
             <ProductCard key={prod.id} product={prod} />
           ))
         )}

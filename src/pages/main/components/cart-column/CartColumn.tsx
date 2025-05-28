@@ -6,16 +6,16 @@ import { Search } from "~/pages/main/components/search/Search";
 //------------------------------------------------------
 
 export function CartColumn() {
-  const { cartItems, searchedData, handlerSearch } = useCartColumn();
+  const { cartItems, searchedData, hasCartSearchParams } =
+    useCartColumn();
   return (
     <ColumnContainer>
-      <Search handlerSearch={handlerSearch} />
+      <Search searchParam="cartSearch" />
       <div className="flex flex-col gap-2 grow-1 overflow-auto">
-        {(searchedData?.length ? searchedData : cartItems)?.map((cartItem) => (
+        {(hasCartSearchParams ? searchedData : cartItems)?.map((cartItem) => (
           <CartCard
             key={cartItem.product.id}
             cartItem={cartItem}
-            handlerSearch={handlerSearch}
           />
         ))}
       </div>

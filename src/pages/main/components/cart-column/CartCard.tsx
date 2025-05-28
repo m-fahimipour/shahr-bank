@@ -4,11 +4,7 @@ import { Button } from "~/components/ui/button";
 //------------------------------------------------------
 
 //@Store
-import {
-  decrease,
-  deleteFromCart,
-  increase,
-} from "~/store/slices/cart";
+import { decrease, deleteFromCart, increase } from "~/store/slices/cart";
 //------------------------------------------------------
 
 //@Types
@@ -16,11 +12,10 @@ import type { ICartItem } from "~/types/common";
 
 interface ICartCard {
   cartItem: ICartItem;
-  handlerSearch(val: string): void;
 }
 //------------------------------------------------------
 
-export function CartCard({ cartItem, handlerSearch }: ICartCard) {
+export function CartCard({ cartItem }: ICartCard) {
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col p-3 gap-3 w-full rounded-2xl border border-gray-500">
@@ -57,7 +52,6 @@ export function CartCard({ cartItem, handlerSearch }: ICartCard) {
           variant={"default"}
           onClick={() => {
             dispatch(deleteFromCart(cartItem.product));
-            handlerSearch("");
           }}
         >
           Remove

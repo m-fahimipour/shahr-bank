@@ -1,5 +1,9 @@
 //@React
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
+//------------------------------------------------------
+
+//@Third-Party
+import { useSearchParams } from "react-router";
 //------------------------------------------------------
 
 //@Services
@@ -11,29 +15,29 @@ import type { IUser } from "~/types/common";
 //------------------------------------------------------
 
 export function useUserColumn() {
-  const { data: userData, isLoading } = useGetUsersQuery(undefined);
-  const [searchedData, setSearchData] = useState<IUser[] | undefined>(
-    undefined
-  );
+  const [searchParams] = useSearchParams();
+  const [searchedData, setSearchData] = useState<IUser[] | undefined>([]);
 
-  function handlerSearch(searchValue: string) {
-    if (searchValue) {
+  const { data: userData, isLoading } = useGetUsersQuery(undefined);
+
+  useLayoutEffect(() => {
+    if (searchParams.has("userSearch")) {
       setSearchData(
         userData?.filter((user) =>
           (
             user.name.firstname.toLowerCase() + user.name.lastname.toLowerCase()
-          ).includes(searchValue.toLowerCase())
+          ).includes(searchParams.get("userSearch")!.toLowerCase())
         )
       );
     } else {
       setSearchData([]);
     }
-  }
+  }, [searchParams.get("userSearch"), isLoading]);
 
   return {
     userData,
     searchedData,
     isLoading,
-    handlerSearch,
+    hasProductSearchParams: searchParams.has("userSearch"),
   };
 }
