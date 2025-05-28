@@ -1,5 +1,6 @@
 //@Third-Party
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { Button } from "~/components/ui/button";
 //------------------------------------------------------
 
@@ -49,7 +50,14 @@ export function ProductCard({ product }: IProductCard) {
       <Button
         className="bg-blue-500 hover:bg-blue-800 hover:cursor-pointer"
         variant={"default"}
-        onClick={() => dispatch(addToCart(product))}
+        onClick={() => {
+          dispatch(addToCart(product));
+          toast.success(
+            (product.title.length > 40
+              ? product.title.slice(0, 40) + "..."
+              : product.title) + " was added to cart"
+          );
+        }}
       >
         Add to Cart
       </Button>

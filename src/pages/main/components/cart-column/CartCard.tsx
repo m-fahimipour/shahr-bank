@@ -1,5 +1,6 @@
 //@Third-Party
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { Button } from "~/components/ui/button";
 //------------------------------------------------------
 
@@ -52,6 +53,11 @@ export function CartCard({ cartItem }: ICartCard) {
           variant={"default"}
           onClick={() => {
             dispatch(deleteFromCart(cartItem.product));
+            toast.error(
+              (cartItem.product.title.length > 40
+                ? cartItem.product.title.slice(0, 40) + "..."
+                : cartItem.product.title) + " was removed"
+            );
           }}
         >
           Remove
@@ -60,14 +66,30 @@ export function CartCard({ cartItem }: ICartCard) {
         <div className="flex justify-between items-center gap-2">
           <Button
             className="hover:cursor-pointer"
-            onClick={() => dispatch(decrease(cartItem.product))}
+            onClick={() => {
+              dispatch(decrease(cartItem.product));
+              if (cartItem.count > 1) {
+                toast.error(
+                  (cartItem.product.title.length > 40
+                    ? cartItem.product.title.slice(0, 40) + "..."
+                    : cartItem.product.title) + " decreased"
+                );
+              }
+            }}
           >
             {"-"}
           </Button>
           <span className="text-2xl">{cartItem.count}</span>
           <Button
             className="hover:cursor-pointer"
-            onClick={() => dispatch(increase(cartItem.product))}
+            onClick={() => {
+              dispatch(increase(cartItem.product));
+              toast.success(
+                (cartItem.product.title.length > 40
+                  ? cartItem.product.title.slice(0, 40) + "..."
+                  : cartItem.product.title) + " increased"
+              );
+            }}
           >
             {"+"}
           </Button>
